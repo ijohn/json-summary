@@ -44,3 +44,49 @@ def test_complex_obj() -> None:
 
 def test_complex_arr() -> None:
     assert summarise([10, [True], {"name": "John Doe"}]) == ["number", ["boolean"], {"name": "string"}]
+
+
+def test_complex_obj_with_max_depth() -> None:
+    in_json = {
+        "name": "John Doe",
+        "address": {"city": "Jakarta"},
+        "friends": [{"name": "Jane Doe", "address": {"city": "Bandung"}}],
+    }
+    assert summarise(in_json) == {
+        "name": "string",
+        "address": {"city": "string"},
+        "friends": [{"name": "string", "address": {"city": "string"}}],
+    }
+    assert summarise(in_json, max_depth=1) == {"name": "string", "address": {}, "friends": []}
+    assert summarise(in_json, max_depth=2) == {
+        "name": "string",
+        "address": {"city": "string"},
+        "friends": [{}],
+    }
+    assert summarise(in_json, max_depth=3) == {
+        "name": "string",
+        "address": {"city": "string"},
+        "friends": [{"name": "string", "address": {}}],
+    }
+
+
+def test_complex_arr_with_max_depth() -> None:
+    in_json = [
+        12,
+        [True],
+        {"name": "John Doe", "address": {"city": "Jakarta"}},
+        {"name": "Jane Doe", "address": {"city": "Bandung"}},
+    ]
+    assert summarise(in_json) == [
+        "number",
+        ["boolean"],
+        {"name": "string", "address": {"city": "string"}},
+        {"name": "string", "address": {"city": "string"}},
+    ]
+    assert summarise(in_json, max_depth=1) == ["number", [], {}, {}]
+    assert summarise(in_json, max_depth=2) == [
+        "number",
+        ["boolean"],
+        {"name": "string", "address": {}},
+        {"name": "string", "address": {}},
+    ]
