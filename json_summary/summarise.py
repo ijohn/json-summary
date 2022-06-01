@@ -14,7 +14,7 @@ def get_repr(value: Any) -> str:
     if isinstance(value, (int, float)):
         return "number"
 
-    raise Exception(f"Unknown type for value {value}")
+    raise Exception(f"Unknown type for value {value}")  # pragma: no cover
 
 
 def process_dict(in_dict: Any) -> Any:
