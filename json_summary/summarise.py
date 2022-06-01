@@ -22,10 +22,12 @@ def process_dict(in_dict: Any) -> Any:
 
     for key, value in in_dict.items():
         if isinstance(value, dict):
-            ...
+            result[key] = process_dict(value)
+            continue
 
         if isinstance(value, list):
-            ...
+            result[key] = process_list(value)
+            continue
 
         result[key] = get_repr(value)
 
@@ -37,10 +39,12 @@ def process_list(in_list: Any) -> Any:
 
     for elem in in_list:
         if isinstance(elem, dict):
-            ...
+            result.append(process_dict(elem))
+            continue
 
         if isinstance(elem, list):
-            ...
+            result.append(process_list(elem))
+            continue
 
         result.append(get_repr(elem))
 
