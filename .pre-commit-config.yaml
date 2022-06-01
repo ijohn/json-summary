@@ -1,0 +1,62 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-toml
+      - id: check-yaml
+      - id: requirements-txt-fixer
+      - id: detect-private-key
+      - id: check-merge-conflict
+      # - id: no-commit-to-branch
+  - repo: https://github.com/snok/pep585-upgrade
+    rev: v1.0.1
+    hooks:
+      - id: upgrade-type-hints
+  - repo: local
+    hooks:
+      - id: pyupgrade
+        name: pyupgrade
+        language: python
+        entry: pyupgrade --py310-plus
+        types: [python]
+      - id: isort
+        name: isort
+        language: python
+        entry: isort
+        types: [python]
+      - id: black
+        name: black
+        language: python
+        entry: black
+        types: [python]
+      - id: flake8
+        name: flake8
+        language: python
+        entry: flake8
+        types: [python]
+      - id: autoflake
+        name: autoflake
+        language: python
+        entry: autoflake
+        types: [python]
+        args: [-i, --remove-all-unused-imports, --remove-unused-variable]
+      - id: pylint
+        name: pylint
+        language: python
+        entry: pylint
+        types: [python]
+      - id: mypy
+        name: mypy
+        language: python
+        entry: mypy .
+        types: [python]
+        pass_filenames: false
+      - id: bandit
+        name: bandit
+        language: python
+        entry: bandit -s B101
+        types: [python]

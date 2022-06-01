@@ -1,0 +1,49 @@
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+ignore_errors = true
+
+[tool.coverage.run]
+omit = [
+    "*/site-packages/*",
+    "tests/*",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.mypy]
+ignore_missing_imports = true
+install_types = true
+non_interactive = true
+namespace_packages = true
+explicit_package_bases = true
+strict = true
+
+[tool.pylint.master]
+init-hook = "import sys; sys.path.append(\".\")"
+jobs = 0
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "too-few-public-methods",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.similarities]
+ignore-signatures = true
