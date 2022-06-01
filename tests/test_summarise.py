@@ -68,6 +68,11 @@ def test_complex_obj_with_max_depth() -> None:
         "address": {"city": "string"},
         "friends": [{"name": "string", "address": {}}],
     }
+    assert summarise(in_json, max_depth=99) == {
+        "name": "string",
+        "address": {"city": "string"},
+        "friends": [{"name": "string", "address": {"city": "string"}}],
+    }
 
 
 def test_complex_arr_with_max_depth() -> None:
@@ -89,4 +94,10 @@ def test_complex_arr_with_max_depth() -> None:
         ["boolean"],
         {"name": "string", "address": {}},
         {"name": "string", "address": {}},
+    ]
+    assert summarise(in_json, max_depth=99) == [
+        "number",
+        ["boolean"],
+        {"name": "string", "address": {"city": "string"}},
+        {"name": "string", "address": {"city": "string"}},
     ]
