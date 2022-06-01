@@ -43,4 +43,4 @@ def test_complex_obj() -> None:
 
 
 def test_complex_arr() -> None:
-    assert summarise([10, {"name": "John Doe"}]) == ["number", {"name": "string"}]
+    assert summarise([10, [True], {"name": "John Doe"}]) == ["number", ["boolean"], {"name": "string"}]
