@@ -18,11 +18,6 @@ repos:
       - id: upgrade-type-hints
   - repo: local
     hooks:
-      - id: pyupgrade
-        name: pyupgrade
-        language: python
-        entry: pyupgrade --py310-plus
-        types: [python]
       - id: isort
         name: isort
         language: python
