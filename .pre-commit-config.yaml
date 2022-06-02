@@ -50,8 +50,3 @@ repos:
         entry: mypy .
         types: [python]
         pass_filenames: false
-      - id: bandit
-        name: bandit
-        language: python
-        entry: bandit -s B101
-        types: [python]
