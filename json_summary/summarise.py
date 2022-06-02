@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 
 def _get_value_repr(value: Any) -> str:
@@ -17,7 +17,7 @@ def _get_value_repr(value: Any) -> str:
     raise Exception(f"Unknown type for value {value}")  # pragma: no cover
 
 
-def _get_obj_repr(value: Any, depth: int, max_depth: int | None = None) -> Any:
+def _get_obj_repr(value: Any, depth: int, max_depth: Optional[int] = None) -> Any:
     if max_depth is not None:
         if depth < max_depth:
             return _process_dict(value, depth, max_depth=max_depth)
@@ -27,7 +27,7 @@ def _get_obj_repr(value: Any, depth: int, max_depth: int | None = None) -> Any:
     return _process_dict(value, depth, max_depth=max_depth)
 
 
-def _get_arr_repr(value: Any, depth: int, max_depth: int | None = None) -> Any:
+def _get_arr_repr(value: Any, depth: int, max_depth: Optional[int] = None) -> Any:
     if max_depth is not None:
         if depth < max_depth:
             return _process_list(value, depth, max_depth=max_depth)
@@ -37,7 +37,7 @@ def _get_arr_repr(value: Any, depth: int, max_depth: int | None = None) -> Any:
     return _process_list(value, depth, max_depth=max_depth)
 
 
-def _process_dict(in_dict: Any, depth: int, max_depth: int | None = None) -> Any:
+def _process_dict(in_dict: Any, depth: int, max_depth: Optional[int] = None) -> Any:
     result = {}
     depth += 1
 
@@ -55,7 +55,7 @@ def _process_dict(in_dict: Any, depth: int, max_depth: int | None = None) -> Any
     return result
 
 
-def _process_list(in_list: Any, depth: int, max_depth: int | None = None) -> Any:
+def _process_list(in_list: Any, depth: int, max_depth: Optional[int] = None) -> Any:
     result = []
     depth += 1
 
@@ -73,7 +73,7 @@ def _process_list(in_list: Any, depth: int, max_depth: int | None = None) -> Any
     return result
 
 
-def summarise(in_json: Any, max_depth: int | None = None) -> Any:
+def summarise(in_json: Any, max_depth: Optional[int] = None) -> Any:
     if isinstance(in_json, dict):
         return _process_dict(in_json, 0, max_depth=max_depth)
 
