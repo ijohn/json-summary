@@ -27,6 +27,7 @@ jobs:
           flake8 .
           pylint json_summary
           mypy .
+          bandit -r -s B101 -q .
       - name: Run tests
         run: |
           coverage run -m pytest
