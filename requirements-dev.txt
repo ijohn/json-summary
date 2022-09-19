@@ -1,4 +1,4 @@
-autoflake==1.5.3
+autoflake==1.6.0
 bandit==1.7.4
 black==22.8.0
 coverage[toml]==6.4.4
