@@ -4,7 +4,7 @@ black==22.8.0
 coverage[toml]==6.5.0
 flake8==5.0.4
 isort==5.10.1
-mypy==0.981
+mypy==0.982
 pre-commit==2.20.0
 pylint==2.15.3
 pytest==7.1.3
