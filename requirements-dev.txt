@@ -3,7 +3,7 @@ bandit==1.7.4
 black==22.12.0
 coverage[toml]==7.1.0
 flake8==6.0.0
-isort==5.11.4
+isort==5.12.0
 mypy==0.991
 pre-commit==2.20.0
 pylint==2.15.9
